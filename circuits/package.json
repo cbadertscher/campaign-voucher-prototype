@@ -1,0 +1,14 @@
+{
+  "name": "campaignvoucher-circuits",
+  "private": true,
+  "description": "Circom credential circuit, trusted setup, and fixture generator for CampaignVoucher M2",
+  "scripts": {
+    "setup": "bash scripts/setup.sh",
+    "fixtures": "node scripts/gen_fixture.js"
+  },
+  "devDependencies": {
+    "circomlib": "^2.0.5",
+    "circomlibjs": "^0.1.7",
+    "snarkjs": "^0.7.5"
+  }
+}

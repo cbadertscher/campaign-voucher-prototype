@@ -1,0 +1,8 @@
+cache/
+out/
+broadcast/
+gas-reports/*.csv
+gas-reports/*CostEstimate_*.md
+circuits/node_modules/
+circuits/build/
+.env
