@@ -177,7 +177,16 @@ contract CostEstimateScript is CostMeasurement {
         s = string.concat(s, _actionRow("Donate", gas_.donate, l1Fees.donate, ps));
         s = string.concat(s, _actionRow("Spend (1)", gas_.spend, l1Fees.spend, ps));
         s = string.concat(s, _actionRow("Redeem (1)", gas_.redeem, l1Fees.redeem, ps));
-        s = string.concat(s, "\n(`a_register` measured separately: ", vm.toString(gas_.register), " gas -- used only in Section 8 below.)\n\n");
+        s = string.concat(
+            s,
+            "\n`(1)` on Spend/Redeem means a single voucher, not a fixed per-call cost: both ",
+            "`batchTransfer`/`redeem` take an array of voucher IDs and can sweep many at once (SPEC's ",
+            "batching requirement at the candidate->vendor and vendor->authority outflows), so this is ",
+            "the no-batching baseline, not what a real accumulated sweep costs -- see B3 (`test/gas/",
+            "B3_OutflowSlope.t.sol`) for the measured marginal gas/voucher once batched, and Section 8 ",
+            "below for that fit applied to a real population.\n\n",
+            "(`a_register` measured separately: ", vm.toString(gas_.register), " gas -- used only in Section 8 below.)\n\n"
+        );
         return s;
     }
 
